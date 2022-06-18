@@ -45,6 +45,7 @@ workflows:
     jobs:
       - say-hello
       - print-hello
+      - print-my-name
       - print-world:
           requires:
             - print-hello
