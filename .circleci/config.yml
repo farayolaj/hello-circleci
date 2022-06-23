@@ -11,6 +11,14 @@ commands:
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
+  failed_job:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run: return 1
+      - run:
+          command: echo This job has failed
+          when: on_fail
   save_hello_world_output:
     docker:
       - image: cimg/base:stable
@@ -45,6 +53,7 @@ jobs:
 workflows:
   say-hello-workflow:
     jobs:
+      - failed_job
       - save_hello_world_output
       - print_output_file:
           requires:
