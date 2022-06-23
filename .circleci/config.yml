@@ -38,9 +38,7 @@ jobs:
 workflows:
   say-hello-workflow:
     jobs:
-      - say-hello
-      - print-hello
-      - print-my-name
-      - print-world:
+      - save_hello_world_output
+      - print_output_file:
           requires:
-            - print-hello
+            - save_hello_world_output
